@@ -325,7 +325,7 @@ static int suspend_test(int level)
 {
 #ifdef CONFIG_PM_DEBUG
 	if (pm_test_level == level) {
-		pr_info("suspend debug: Waiting for %d second(s).\n",
+		pr_debug("suspend debug: Waiting for %d second(s).\n",
 				pm_test_delay);
 		mdelay(pm_test_delay * 1000);
 		return 1;
@@ -402,7 +402,7 @@ static int suspend_enter(suspend_state_t state, bool *wakeup)
 	if (error) {
 		last_dev = suspend_stats.last_failed_dev + REC_FAILED_NUM - 1;
 		last_dev %= REC_FAILED_NUM;
-		pr_err("late suspend of devices failed\n");
+		pr_debug("late suspend of devices failed\n");
 		log_suspend_abort_reason("late suspend of %s device failed",
 					 suspend_stats.failed_devs[last_dev]);
 		goto Platform_finish;
@@ -420,7 +420,7 @@ static int suspend_enter(suspend_state_t state, bool *wakeup)
 	if (error) {
 		last_dev = suspend_stats.last_failed_dev + REC_FAILED_NUM - 1;
 		last_dev %= REC_FAILED_NUM;
-		pr_err("noirq suspend of devices failed\n");
+		pr_debug("noirq suspend of devices failed\n");
 		log_suspend_abort_reason("noirq suspend of %s device failed",
 					 suspend_stats.failed_devs[last_dev]);
 		goto Platform_early_resume;
@@ -500,7 +500,7 @@ int suspend_devices_and_enter(suspend_state_t state)
 	suspend_test_start();
 	error = dpm_suspend_start(PMSG_SUSPEND);
 	if (error) {
-		pr_err("Some devices failed to suspend, or early wake event detected\n");
+		pr_debug("Some devices failed to suspend, or early wake event detected\n");
 		log_suspend_abort_reason(
 				"Some devices failed to suspend, or early wake event detected");
 		goto Recover_platform;
@@ -619,7 +619,7 @@ int pm_suspend(suspend_state_t state)
 	if (state <= PM_SUSPEND_ON || state >= PM_SUSPEND_MAX)
 		return -EINVAL;
 
-	pr_info("suspend entry (%s)\n", mem_sleep_labels[state]);
+	pr_debug("suspend entry (%s)\n", mem_sleep_labels[state]);
 	error = enter_state(state);
 	if (error) {
 		suspend_stats.fail++;
@@ -627,7 +627,7 @@ int pm_suspend(suspend_state_t state)
 	} else {
 		suspend_stats.success++;
 	}
-	pr_info("suspend exit\n");
+	pr_debug("suspend exit\n");
 	measure_wake_up_time();
 	return error;
 }
