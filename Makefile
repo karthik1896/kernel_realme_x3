@@ -729,6 +729,7 @@ KBUILD_CFLAGS   += $(call cc-disable-warning, enum-conversion)
 KBUILD_CFLAGS   += $(call cc-disable-warning, unused-variable)
 KBUILD_CFLAGS   += $(call cc-disable-warning, single-bit-bitfield-constant-conversion)
 KBUILD_CFLAGS   += $(call cc-disable-warning, array-parameter)
+KBUILD_CFLAGS   += $(call cc-disable-warning, unused-function)
 
 ifdef CONFIG_CC_OPTIMIZE_FOR_SIZE
 KBUILD_CFLAGS   += -Os
