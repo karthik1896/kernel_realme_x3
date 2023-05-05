@@ -23,7 +23,7 @@ dtb="out/arch/arm64/boot/dts/qcom/sm8150-v2.dtb"
 dtbo="out/arch/arm64/boot/dtbo.img"
 
 AK3_DIR="/workspaces/codespaces-blank/AnyKernel3"
-ZIPNAME="Zeus-X3-$(date '+%Y%m%d-%H%M').zip"
+ZIPNAME="Zeus-X3-KernelSU-$(date '+%Y%m%d-%H%M').zip"
 
 if [ -f "$kernel" ] && [ -f "$dtb" ] && [ -f "$dtbo" ]; then
 	echo -e "\nKernel compiled succesfully! Zipping up...\n"
